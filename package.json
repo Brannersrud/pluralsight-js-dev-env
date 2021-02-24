@@ -4,17 +4,22 @@
   "description": "boiler-plate js env",
   "main": "index.js",
   "eslintConfig": {
-    "plugins": ["example"],
+    "plugins": [
+      "example"
+    ],
     "env": {
-      "example/custom":true
+      "example/custom": true
     }
   },
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "babel-node buildScripts/srcServer.js",
-    "lint":"esw webpack.config.*, src, buildScripts --color",
-    "lint:watch":"npm run lint --watch",
-    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\""
+    "start": "babel-node buildScripts/srcServer.js npm run start-mockapi",
+    "lint": "esw webpack.config.*, src, buildScripts --color",
+    "lint:watch": "npm run lint --watch",
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "generateMockData": "babel-node buildScripts/generateMockData",
+    "prestart-mockapi": "npm run generateMockData",
+    "start-mockapi":"json-server --watch src/api/db.json --port 3001"
   },
   "repository": {
     "type": "git",
@@ -59,5 +64,8 @@
     "webpack-dev-middleware": "1.8.4",
     "webpack-hot-middleware": "2.13.0",
     "webpack-md5-hash": "0.0.5"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^3.6.1"
   }
 }

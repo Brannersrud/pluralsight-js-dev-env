@@ -13,6 +13,14 @@ app.use(require('webpack-dev-middleware')(compiler, {
     noInfo:true,
     publicPath:config.output.publicPath
 }))
+app.get('/users', function(req,res){
+    res.json([
+        {"id":1, "name":"bobby", "lastname":"somedude"},
+        {"id":2, "name":"Jeffrey", "lastname":"someotherman"},
+        {"id":3, "name":"John", "lastname":"Doe"},
+
+    ])
+})
 
 app.get("/", function(req,res){
     res.sendFile(path.join(__dirname, "../src/index.html"))
